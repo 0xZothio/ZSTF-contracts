@@ -99,8 +99,18 @@ All tests were successfully executed, confirming the correct functionality of th
 ### Deployments
 
 | Deployments               |                  | % of limit |                  |
+
+
 |---------------------------|------------------|------------|------------------|
 | TestUSDC                  | -                | 30.7%      | 25.29            |
 | WhitelistManager          | -                | 16.2%      | 13.37            |
 | ZothPool                  | -                | 80.7%      | 66.52            |
+
+
+<br/>
+<br/>
+<br/>
+<img width="1281" alt="Screenshot 2024-07-09 at 8 23 05 PM" src="https://github.com/0xZothio/zoth-contracts/assets/82640789/2d2647dc-7e2c-4839-a821-bdd1d5a67829">
+<img width="1279" alt="Screenshot 2024-07-09 at 8 23 14 PM" src="https://github.com/0xZothio/zoth-contracts/assets/82640789/3c5911ff-36a8-4060-bfb8-1f008d6efb26">
+
 
