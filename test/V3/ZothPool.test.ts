@@ -68,7 +68,6 @@ describe("ZothPool", function () {
     const testUSDC3 = await testUSDCContract.deploy();
     const testUSDC4 = await testUSDCContract.deploy();
     const testUSDC5 = await testUSDCContract.deploy();
-    console.log("USDC deployed.");
 
     const testUSDCAddress1 = await testUSDC1.getAddress();
     const testUSDCAddress2 = await testUSDC2.getAddress();
@@ -92,7 +91,6 @@ describe("ZothPool", function () {
       testUSDCAddress5,
     ];
 
-    console.log("Tokens transfered from main account to otherAccount.");
 
     // WHITELISTER SETUP
     const whitelistManagerContract = await ethers.getContractFactory(
@@ -102,7 +100,6 @@ describe("ZothPool", function () {
       .connect(owner)
       .deploy();
     const whitelistManagerAddress = await whitelistManager.getAddress();
-    console.log("Whitelister deployed.");
 
     // MAIN POOL SETUP
     const zothTestLPContract = await ethers.getContractFactory("ZothPool");
@@ -120,7 +117,6 @@ describe("ZothPool", function () {
         maxLockingPeriod
       );
 
-    console.log("ZothPool deployed.");
 
     const zothTestLPAddress = await ZothTestLP.getAddress();
 
@@ -135,7 +131,6 @@ describe("ZothPool", function () {
     await testUSDC3.transfer(zothTestLPAddress, amountToTransfer);
     await testUSDC4.transfer(zothTestLPAddress, amountToTransfer);
     await testUSDC5.transfer(zothTestLPAddress, amountToTransfer);
-    console.log("tUSDC transfered to ZothPool contract.");
 
     return {
       owner,
@@ -212,13 +207,10 @@ describe("ZothPool", function () {
         zothTestLPAddress,
         otherAccount,
         whitelistManager,
-        owner,
-        tokenAddresses,
         testUSDC1,
         testUSDC2,
-        testUSDC3,
         verifier,
-        poolmanager,
+        
       } = await loadFixture(runEveryTime);
 
       const spender_amount = ethers.parseUnits("1000", 18);
@@ -312,7 +304,6 @@ describe("ZothPool", function () {
       } = await loadFixture(runEveryTime);
 
       const spender_amount = ethers.parseUnits("1000", 6);
-      console.log(spender_amount);
       await testUSDC3
         .connect(otherAccount)
         .approve(zothTestLPAddress, spender_amount);
@@ -372,10 +363,7 @@ describe("ZothPool", function () {
         2,
         10
       );
-      console.log(
-        "After Deposit Balance",
-        await testUSDC3.balanceOf(zothTestLPAddress)
-      );
+        
 
       // here amount 1600
       const unlockTime = (await time.latest()) + getSecondsOfDays(30);
@@ -411,10 +399,7 @@ describe("ZothPool", function () {
       await whitelistManager
         .connect(verifier)
         .addWhitelist(otherAccount.address);
-      console.log(
-        "Balance Before: ",
-        await testUSDC3.balanceOf(otherAccount.address)
-      );
+     
       await ZothTestLP.connect(otherAccount).depositByLockingPeriod(
         ethers.parseUnits("200", 18),
         getSecondsOfDays(90),
@@ -422,10 +407,7 @@ describe("ZothPool", function () {
         10
       );
 
-      console.log(
-        "Balance After: ",
-        await testUSDC3.balanceOf(otherAccount.address)
-      );
+     
 
       const unlockTime = (await time.latest()) + getSecondsOfDays(100);
 
@@ -433,12 +415,7 @@ describe("ZothPool", function () {
 
       await ZothTestLP.connect(otherAccount).withdrawUsingDepositId(0);
 
-      console.log(
-        "Balance After Withdraw: ",
-        await testUSDC3.balanceOf(otherAccount.address)
-      );
 
-      console.log(await testUSDC3.balanceOf(zothTestLPAddress));
       // 1000 USDC + Reward : 3287671/1e6 = 3.287USDC + 1000USDC = 1003.287USDC
       expect(await testUSDC3.balanceOf(otherAccount.address)).to.equal(
         "1004931506849315068493"
@@ -515,10 +492,7 @@ describe("ZothPool", function () {
       await whitelistManager
         .connect(verifier)
         .addWhitelist(otherAccount.address);
-      console.log(
-        "Balance Before: ",
-        await testUSDC3.balanceOf(otherAccount.address)
-      );
+    
       await ZothTestLP.connect(otherAccount).depositByLockingPeriod(
         ethers.parseUnits("400", 18),
         getSecondsOfDays(90),
@@ -560,10 +534,7 @@ describe("ZothPool", function () {
       await whitelistManager
         .connect(verifier)
         .addWhitelist(otherAccount.address);
-      console.log(
-        "Balance Before: ",
-        await testUSDC3.balanceOf(otherAccount.address)
-      );
+
 
       await expect(ZothTestLP.connect(otherAccount).depositByLockingPeriod(
         ethers.parseUnits("400", 18),
@@ -597,10 +568,6 @@ describe("ZothPool", function () {
         .addWhitelist(otherAccount.address);
 
 
-      console.log(
-        "Balance Before: ",
-        await testUSDC3.balanceOf(otherAccount.address)
-      );
 
       await ZothTestLP.connect(otherAccount).depositByLockingPeriod(
         ethers.parseUnits("400", 18),
@@ -616,10 +583,7 @@ describe("ZothPool", function () {
 
       await ZothTestLP.connect(otherAccount).withdrawUsingDepositId(0);
 
-      console.log(
-        "Balance After Withdraw: ",
-        await testUSDC3.balanceOf(otherAccount.address)
-      );
+     
 
 
 

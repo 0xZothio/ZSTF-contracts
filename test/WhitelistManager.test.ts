@@ -3,7 +3,7 @@ import { time, loadFixture } from "@nomicfoundation/hardhat-network-helpers";
 import { ethers } from "hardhat";
 describe("Whitelist Manager", function () {
   async function runEveryTime() {
-    const [owner, hr, poolmanager, fundmanager, verifier, whitelister] =
+    const [owner, hr, poolmanager, fundmanager, verifier, whitelister,user1,user2,user3,user4] =
       await ethers.getSigners();
 
     // WHITELISTER SETUP
@@ -24,6 +24,7 @@ describe("Whitelist Manager", function () {
       fundmanager,
       verifier,
       whitelister,
+      user1,user2,user3,user4
     };
   }
 
@@ -117,7 +118,7 @@ describe("Whitelist Manager", function () {
       expect(await whitelistManager.isVerifier(verifier.address)).to.equal(false);
     });
 
-    it("[ADD REMOVE WHITELISTER]: Only Verifier Should Add/Remove Whitelister Address", async () => {
+    it("[ADD REMOVE WHITELISTER]: Only Verifier/owner Should Add/Remove Whitelister Address", async () => {
       const {
         whitelistManager,
         owner,
@@ -134,5 +135,35 @@ describe("Whitelist Manager", function () {
       await whitelistManager.connect(verifier).removeWhitelist(whitelister.address);
       expect(await whitelistManager.isWhitelisted(whitelister.address)).to.equal(false);
     });
+  });
+
+  it("[ADD/REMOVE MULTIPLE WHITELISTERS]: Only Verifier/Owner Should Add/Remove Whitelisted Addresses", async () => {
+    const {
+      whitelistManager,
+      owner,
+      hr,
+      poolmanager,
+      fundmanager,
+      verifier,
+      whitelister,user1,user2,user3,user4,
+    } = await loadFixture(runEveryTime);
+  
+    
+    const addressesToAdd = [user1.address, user2.address, user3.address, user4.address];
+    const addressesToRemove = [user1.address, user2.address, user3.address, user4.address];
+  
+
+    await whitelistManager.connect(owner).addMultipleWhitelist(addressesToAdd);
+  
+
+    for (let i = 0; i < addressesToAdd.length; i++) {
+      expect(await whitelistManager.isWhitelisted(addressesToAdd[i])).to.equal(true);
+    }
+    
+    await whitelistManager.connect(owner).removeMultipleWhitelist(addressesToRemove);
+ 
+    for (let i = 0; i < addressesToRemove.length; i++) {
+      expect(await whitelistManager.isWhitelisted(addressesToRemove[i])).to.equal(false);
+    }
   });
 });

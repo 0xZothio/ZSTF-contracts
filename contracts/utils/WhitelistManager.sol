@@ -205,6 +205,18 @@ contract WhitelistManager {
     }
 
     /**
+     * @dev To remove multiple addresses to the whitelist at once
+     */
+
+    function removeMultipleWhitelist(
+        address[] memory _addresses
+    ) public onlyVerifiers {
+        for (uint i = 0; i < _addresses.length; i++) {
+            _whitelisted.remove(_addresses[i]);
+        }
+    }
+
+    /**
      * @dev To remove an address from whitelist
      */
     function removeWhitelist(address _address) public onlyVerifiers {
