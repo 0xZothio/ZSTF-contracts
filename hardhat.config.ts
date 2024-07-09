@@ -132,6 +132,7 @@ const config: HardhatUserConfig = {
     },
   },
   docgen: {
+    files: ["contracts/V3/ZothPool.sol"],
     output: "docs",
     pages: () => "api.md",
   },
