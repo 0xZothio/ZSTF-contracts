@@ -58,6 +58,14 @@ const customChains =  [
         browserURL: "https://scan.test.btcs.network",
       },
     },
+    {
+      network: "polygonAmoy",
+      chainId: 80002,
+      urls: {
+        apiURL: "",
+        browserURL: "https://amoy.polygonscan.com/",
+      },
+    }
   ];
 
   module.exports = customChains;
