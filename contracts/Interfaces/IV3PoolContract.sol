@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity ^0.8.16;
 
-interface IV3ZothPool {
+interface IV3PoolContract {
     struct Lender {
         uint256 startId;
         uint256 currentId;

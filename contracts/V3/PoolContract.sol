@@ -6,14 +6,14 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import {IERC20} from "../Interfaces/IERC20.sol";
 import {IWhitelistManager} from "../Interfaces/IWhitelistManager.sol";
-import {IV3ZothPool} from "../Interfaces/IV3ZothPool.sol";
+import {IV3PoolContract} from "../Interfaces/IV3PoolContract.sol";
 
 /**
  * @author Zoth.io
  * @notice This contract is a pool contract that inherits the properties of the ERC721 token standard.
  */
 
-contract ZothPool is ERC721URIStorage, IV3ZothPool {
+contract ZothPool is ERC721URIStorage, IV3PoolContract {
     using Counters for Counters.Counter;
     uint256 constant ONE_YEAR = 365 days;
 
@@ -104,7 +104,7 @@ contract ZothPool is ERC721URIStorage, IV3ZothPool {
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
 
     /**
-     * @dev Refer : IV3ZothPool : deposit
+     * @dev Refer : IV3PoolContract : deposit
      * @param _amount : Amount to be deposited
      * @param _tokenId : Token address to be deposited ID (Only Whitelisted)
      * @param _lockingDuration : Locking duration for the deposit (if it Zero then it will take the default tenure)
@@ -172,7 +172,7 @@ contract ZothPool is ERC721URIStorage, IV3ZothPool {
     }
 
     /**
-     * @dev Refer : IV3ZothPool : withdraw
+     * @dev Refer : IV3PoolContract : withdraw
      * @param id is the id of deposit
      * @notice Withdraw the deposited amount
      * @return bool : True if the withdrawal is successful
@@ -214,7 +214,7 @@ contract ZothPool is ERC721URIStorage, IV3ZothPool {
     }
 
     /**
-     * @dev Refer : IV3ZothPool : reInvest
+     * @dev Refer : IV3PoolContract : reInvest
      * @param _depositId : deposit id of the deposits
      * @param _amount : amount to be reinvested
      * @return bool : True if the reinvestment is successful
@@ -267,7 +267,7 @@ contract ZothPool is ERC721URIStorage, IV3ZothPool {
     }
 
     /**
-     * @dev Refer : IV3ZothPool : emergencyWithdraw
+     * @dev Refer : IV3PoolContract : emergencyWithdraw
      * @param id is the id of deposit
      * @notice Withdraw the deposited amount before the end date (emergency withdraw)
      * @return bool : True if the withdrawal is successful
@@ -310,7 +310,7 @@ contract ZothPool is ERC721URIStorage, IV3ZothPool {
 
  
     /**
-     * @dev Refer : IV3ZothPool : setWithdrawRate
+     * @dev Refer : IV3PoolContract : setWithdrawRate
      * @param newRate is the new withdraw rate
      */
 
@@ -365,7 +365,7 @@ contract ZothPool is ERC721URIStorage, IV3ZothPool {
 
 
     /**
-     * @dev Refer : IV3ZothPool : getActiveDeposits
+     * @dev Refer : IV3PoolContract : getActiveDeposits
      * @param lender is the address of lender
      */
     function getActiveDeposits(
