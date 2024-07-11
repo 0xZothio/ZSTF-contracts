@@ -1,5 +1,4 @@
-
- const getProviderRpcUrl = (network) => {
+const getProviderRpcUrl = (network) => {
   let rpcUrl;
 
   switch (network) {
@@ -42,6 +41,9 @@
     case "core_testnet_chain":
       rpcUrl = process.env.CORE_TESTNET_CHAIN_RPC_URL;
       break;
+    case "polygonAmoy":
+      rpcUrl = process.env.POLYGON_AMOY_RPC_URL;
+      break;
     default:
       throw new Error("Unknown network: " + network);
   }
@@ -55,7 +57,7 @@
   return rpcUrl;
 };
 
- const getPrivateKey = () => {
+const getPrivateKey = () => {
   const privateKey = process.env.PRIVATE_KEY;
   if (!privateKey)
     throw new Error(
@@ -63,9 +65,6 @@
     );
   return privateKey;
 };
-
-
-
 
 module.exports = {
   getProviderRpcUrl,

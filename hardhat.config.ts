@@ -1,30 +1,10 @@
-import { task,HardhatUserConfig } from "hardhat/config";
+import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@nomicfoundation/hardhat-ethers";
 import "solidity-docgen";
 require("dotenv").config();
 import { getProviderRpcUrl, getPrivateKey } from "./supportedNetworks";
 import customChains from "./supportedNetworks/customChains";
-task("balance", "Prints an account's balance")
-  .addParam("account", "The account's address")
-  .setAction(async (taskArgs) => {
-    const balance = await ethers.provider.getBalance(taskArgs.account);
-    console.log(ethers.utils.formatEther(balance), "ETH");
-  });
-
-task(
-  "hello",
-  "Prints 'Hello, World!'",
-  async function (taskArguments, hre, runSuper) {
-    console.log("Hello, World!");
-  }
-);
-
-task("compileAll", "Compiles all contracts")
-  .setAction(async () => {
-    await hre.run('compile');
-    console.log("All contracts have been compiled.");
-  });
 
 const {
   POLYGON_API_KEY,
@@ -89,6 +69,10 @@ const config: HardhatUserConfig = {
       url: getProviderRpcUrl("core_testnet_chain"),
       accounts: [getPrivateKey()],
     },
+    polygonAmoy:{
+      url: getProviderRpcUrl("polygonAmoy"),
+      accounts: [getPrivateKey()],
+    }
   },
   etherscan: {
     apiKey: {
@@ -102,6 +86,7 @@ const config: HardhatUserConfig = {
       metisSepolia: "apiKey is not required, just set a placeholder",
       bobaSeploiaTestnet: "NO_KEY_REQUIRED",
       core_testnet_chain: CORE_CHAIN_API_KEY,
+      polygonAmoy: POLYGON_API_KEY,
     },
     customChains: customChains,
   },
