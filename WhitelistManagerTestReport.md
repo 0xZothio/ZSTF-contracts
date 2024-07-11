@@ -1,3 +1,4 @@
+
 # Test Report - Whitelist Manager Contract
 
 ## Overview
@@ -120,3 +121,11 @@ All tests were successfully executed, confirming the correct functionality of th
 | Deployments             |                      | % of limit |                  |
 |----------------------------------------------------|----------------------|------------|------------------|
 | WhitelistManager                                   | -                    | 16.2%      | 13.42            |
+
+
+
+
+<img width="1187" alt="Screenshot 2024-07-11 at 1 49 02 PM" src="https://github.com/0xZothio/zoth-contracts/assets/82640789/9c9718d9-7d0c-4707-a7cc-e40f1fd27efb">
+
+<img width="1289" alt="Screenshot 2024-07-11 at 1 49 09 PM" src="https://github.com/0xZothio/zoth-contracts/assets/82640789/2a5f8072-e577-4638-b7e5-f1c7045a0759">
+
