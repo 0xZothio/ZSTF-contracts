@@ -99,8 +99,6 @@ All tests were successfully executed, confirming the correct functionality of th
 ### Deployments
 
 | Deployments               |                  | % of limit |                  |
-
-
 |---------------------------|------------------|------------|------------------|
 | TestUSDC                  | -                | 30.7%      | 25.29            |
 | WhitelistManager          | -                | 16.2%      | 13.37            |
