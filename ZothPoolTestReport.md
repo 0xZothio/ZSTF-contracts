@@ -37,7 +37,7 @@ This test report provides a detailed summary of tests conducted on the ZothPool 
   - Check APR at deposit time.
   - Deposit with correct APR (462,456 gas).
 
-#### [Testing WhitelistManager]
+#### [WhitelistManager]
 
 - **Steps**:
   - Should add Whitelist (47,025 gas).
@@ -53,17 +53,17 @@ This test report provides a detailed summary of tests conducted on the ZothPool 
   - Should withdraw the funds related to deposit ID EMERGENCY (459,532 gas).
   - Verified balance before and after withdrawal.
 
-#### [Withdraw Testing]
+#### [Withdraw]
 
 - **Steps**:
   - Should withdraw by ID.
 
-#### [Testing Transfer Funds]
+#### [Transfer Funds]
 
 - **Steps**:
   - Should transfer funds to another account (63,687 gas).
 
-#### [Reinvest Function Testing]
+#### [Reinvest Function]
 
 - **Steps**:
   - Should test the reinvest function (75,798 gas).
