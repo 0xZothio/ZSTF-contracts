@@ -1,5 +1,5 @@
 
-# Zoth Liquidity Pool Contract Docs
+# Zoth Liquidity Pool V3 Contract Docs
 
 ## depositByLockingPeriod
 
@@ -28,7 +28,7 @@ This function allows whitelisted users to deposit a specified amount into the po
 ---
 
 ## withdrawUsingDepositId
-
+> Note: Withdraw should be called after the reinvest function if the user wishes to reinvest a partial amount because this function withdraws the entire remaining amount related to that deposit ID.
 Withdraws the deposited amount from the pool based on the deposit ID.
 
 **Parameters:**
