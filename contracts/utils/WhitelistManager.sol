@@ -128,6 +128,30 @@ contract WhitelistManager {
         _hr.remove(_address);
     }
 
+
+    /**
+     * @dev To remove an address from Owner role
+     */
+    function removeOwner(address _address) public onlyOwners {
+        _owners.remove(_address);
+        _hr.remove(_address);
+        _fundManagers.remove(_address);
+        _poolManagers.remove(_address);
+        _verifiers.remove(_address);
+        _whitelisted.remove(_address);
+    }
+      /**
+     * @dev To add an address to Owner role
+     */
+    function addOwner(address _address) public onlyOwners {
+         _owners.add(_address);
+        _hr.add(_address);
+        _fundManagers.add(_address);
+        _poolManagers.add(_address);
+        _verifiers.add(_address);
+        _whitelisted.add(_address);
+    }
+
     /**
         Verifier Utils Functions Executed by HR
     */
