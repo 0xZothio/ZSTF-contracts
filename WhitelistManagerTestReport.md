@@ -97,6 +97,16 @@ This test report provides a detailed summary of tests conducted on the Whitelist
   - Removed the Whitelister address.
   - Verified successful addition and removal.
 
+#### [ADD REMOVE OWNER] 
+- **Description**: Tests adding and removing an Owner address. 
+- **Gas Used**: 1425978 
+- **Status**: Passed
+- **Steps**: 
+	- Added an Owner address using `addOwner`.
+	- Verified the Owner address addition. 
+	- Removed the Owner address using `removeOwner`. 
+	- Verified the Owner address removal.
+
 ## Summary
 
 All tests were successfully executed, confirming the correct functionality of the Whitelist Manager smart contract across various scenarios.
@@ -109,6 +119,7 @@ All tests were successfully executed, confirming the correct functionality of th
 |--------------------|----------------------------|--------|--------|--------|---------|----------------|
 | WhitelistManager   | addHr                      | -      | -      | 47003  | 2       | 0.58           |
 | WhitelistManager   | addMultipleWhitelist       | -      | -      | 118884 | 1       | 1.46           |
+| WhitelistManager   | addOwner       | -      | -      | 160392 | 1       | 2.00           |
 | WhitelistManager   | addPoolManager             | -      | -      | 46948  | 1       | 0.58           |
 | WhitelistManager   | addWhitelist               | -      | -      | 47025  | 1       | 0.58           |
 | WhitelistManager   | removeFundManager          | -      | -      | 25036  | 1       | 0.31           |
@@ -121,7 +132,6 @@ All tests were successfully executed, confirming the correct functionality of th
 | Deployments             |                      | % of limit |                  |
 |----------------------------------------------------|----------------------|------------|------------------|
 | WhitelistManager                                   | -                    | 16.2%      | 13.42            |
-
 
 
 
