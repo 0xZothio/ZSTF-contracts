@@ -1,5 +1,5 @@
 
-# Test Report - ZothPool Contract
+# Test Report - Zoth-Liquidity Pool V3
 
 ## Overview
 
