@@ -136,7 +136,36 @@ describe("Whitelist Manager", function () {
       expect(await whitelistManager.isWhitelisted(whitelister.address)).to.equal(false);
     });
   });
+  it("[ADD REMOVE OWNER]: Only Owners Should Add/Remove Owner Address", async () => {
+    const {
+      whitelistManager,
+      owner,
+      hr,
+      poolmanager,
+      fundmanager,
+      verifier,
+      whitelister,
+      user1
+    } = await loadFixture(runEveryTime);
 
+    // Add new owner
+    await whitelistManager.connect(owner).addOwner(user1.address);
+    expect(await whitelistManager.isOwner(user1.address)).to.equal(true);
+    expect(await whitelistManager.isHr(user1.address)).to.equal(true);
+    expect(await whitelistManager.isFundManager(user1.address)).to.equal(true);
+    expect(await whitelistManager.isPoolManager(user1.address)).to.equal(true);
+    expect(await whitelistManager.isVerifier(user1.address)).to.equal(true);
+    expect(await whitelistManager.isWhitelisted(user1.address)).to.equal(true);
+
+    // Remove the owner
+    await whitelistManager.connect(owner).removeOwner(user1.address);
+    expect(await whitelistManager.isOwner(user1.address)).to.equal(false);
+    expect(await whitelistManager.isHr(user1.address)).to.equal(false);
+    expect(await whitelistManager.isFundManager(user1.address)).to.equal(false);
+    expect(await whitelistManager.isPoolManager(user1.address)).to.equal(false);
+    expect(await whitelistManager.isVerifier(user1.address)).to.equal(false);
+    expect(await whitelistManager.isWhitelisted(user1.address)).to.equal(false);
+  });
   it("[ADD/REMOVE MULTIPLE WHITELISTERS]: Only Verifier/Owner Should Add/Remove Whitelisted Addresses", async () => {
     const {
       whitelistManager,
