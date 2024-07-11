@@ -245,11 +245,7 @@ Calculates the number of active deposits for a specific lender.
 | `uint256`| `uint256`| Number
 
 
-<br/>
-<br/>
 
-<img width="1269" alt="Screenshot 2024-07-11 at 2 21 07 PM" src="https://github.com/0xZothio/zoth-contracts/assets/82640789/c7107ebe-0525-43b0-ac71-bcc430bdbfd5">
-<img width="1260" alt="Screenshot 2024-07-11 at 2 20 59 PM" src="https://github.com/0xZothio/zoth-contracts/assets/82640789/6a54e245-246c-47df-ade5-a33bb9a46b74">
 
 
 
