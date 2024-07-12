@@ -1,4 +1,4 @@
-# Zoth Contracts
+# Zoth-Contracts
 
 This Repo contains all the contracts used in `Zoth.io` platform.
 
@@ -8,7 +8,7 @@ This Repo contains all the contracts used in `Zoth.io` platform.
   - [Interfaces/](./contracts/Interfaces/)
     - [IERC20.sol](./contracts/Interfaces/IERC20.sol)
     - [IWhitelistManager.sol](./contracts/Interfaces/IWhitelistManager.sol)
-    - [IZothPool.sol](./contracts/Interfaces/IZothPool.sol)
+    - [IPoolContract.sol](./contracts/Interfaces/IPoolContract.sol)
   - [tokens/](./contracts/tokens/)
     - [TestUSDC.sol](./contracts/tokens/TestUSDC.sol)
   - [utils/](./contracts/utils/)
@@ -16,15 +16,15 @@ This Repo contains all the contracts used in `Zoth.io` platform.
     - [Roles.sol](./contracts/utils/Roles.sol)
     - [WhitelistManager.sol](./contracts/utils/WhitelistManager.sol)
   - [V1/](./contracts/V1/)
-    - [ZothTestLP.sol](./contracts/V1/ZothTestLP.sol)
+    - [PoolContract.sol](./contracts/V1/PoolContract.sol)
   - [V2/](./contracts/V2/)
-    - [ZothTestLPMultiFreq.sol](./contracts/V2/ZothTestLPMultiFreq.sol)
+    - [PoolContract.sol](./contracts/V2/PoolContract.sol)
   - [V3/](./contracts/V3/)
-    - [ZothPool.sol](./contracts/V3/ZothPool.sol)
+    - [PoolContract.sol](./contracts/V3/PoolContract.sol)
 - [test/](./test/)
   - [TestUSDC.test.ts](./test/TestUSDC.test.ts)
-  - [ZothTestLP.test.ts](./test/ZothTestLP.test.ts)
-  - [ZothTestLPMultiFreq.test.ts](./test/ZothTestLPMultiFreq.test.ts)
+  - [V1/PoolContract.test.ts](./test/PoolContract.test.ts)
+  - [V2/PoolContract.test.ts](./test/PoolContract.test.ts)
 
 ### File Description (./contracts/)
 
@@ -64,19 +64,19 @@ This file contains the functions to manage the whitelisting of the addresses and
 
 #### V1
 
-- `ZothTestLP.sol` :
+- `V1_PoolContract.sol` :
 
 This is our 1st iteration of the pool with only one time withdrawl of yield after the end of the tenure of the deposit.
 
 #### V2
 
-- `ZothTestLPMultiFreq.sol` :
+- `V2_PoolContract.sol` :
 
 This is our 2nd iteration of the pool with mutiple times of withdrawl of yield during the whole tenure of deposits. The total yield will get divided into the frequencies and can be claimed within the periods.
 
 #### V3
 
-- `ZothPool.sol` :
+- `V3_PoolContract.sol` :
 
 This is our in progres iteration of the smart contract for the pool. We took the inspiration from polytrade finance smart contracts and modifying the contracts with our own logic.
 
