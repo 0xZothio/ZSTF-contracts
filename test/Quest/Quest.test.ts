@@ -193,7 +193,7 @@ describe("Quest-Contract", function () {
         0
       );
       console.log("user",await testUSDC1.balanceOf(user1.address));
-      console.log(await Quest.connect(user1).getActiveDeposits());
+      
       expect(await testUSDC1.balanceOf(user1.address)).to.equal(
         "1001643836250634195839"
       );
@@ -232,6 +232,52 @@ describe("Quest-Contract", function () {
         "1006575345002536783358"
       );
     });
-    
+
+
+    it("[Get All Deposits] : Should deposit tokens and get all deposits", async () => {
+      const { Quest, otherAccount, testUSDC1,questDeployedAddress } = await loadFixture(runEveryTime);
+      const spender_amount = ethers.parseUnits("1200", 18);
+      await testUSDC1
+        .connect(otherAccount)
+        .approve(questDeployedAddress, spender_amount);
+  
+      await Quest.connect(otherAccount).depositAmount(
+        ethers.parseUnits("100", 18),
+        0
+      );
+      await Quest.connect(otherAccount).depositAmount(
+        ethers.parseUnits("100", 18),
+        0
+      );
+      await Quest.connect(otherAccount).depositAmount(
+        ethers.parseUnits("100", 18),
+        0
+      );
+  
+      const deposits = await Quest.connect(otherAccount).getAllDeposits();
+      // console.log(deposits);
+      expect(deposits.length).to.equal(3);
+      expect(deposits[0].amount).to.equal(ethers.parseUnits("100", 18));
+      expect(deposits[0].withdrawn).to.equal(false);
+    });
+  
+    it("[Get Single Deposit] : Should deposit tokens and get a specific deposit by ID", async () => {
+      const { Quest, otherAccount, testUSDC1,questDeployedAddress } = await loadFixture(runEveryTime);
+      const spender_amount = ethers.parseUnits("1000", 18);
+      await testUSDC1
+        .connect(otherAccount)
+        .approve(questDeployedAddress, spender_amount);
+  
+      await Quest.connect(otherAccount).depositAmount(
+        ethers.parseUnits("400", 18),
+        0 // 1st token address
+      );
+  
+      const depositId = 0;
+      const deposit = await Quest.connect(otherAccount).getDeposit(depositId);
+      expect(deposit.amount).to.equal(ethers.parseUnits("400", 18));
+      expect(deposit.withdrawn).to.equal(false);
+    });
   });
+    
 });

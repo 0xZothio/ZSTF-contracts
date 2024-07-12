@@ -61,7 +61,15 @@ interface IQuest {
     function getBaseApr() external view returns (uint256);
 
     /**
-     * @dev returns an id array of the active deposits for a lender
+     * @dev returns an array of the deposits for a lender
      */
-    function getActiveDeposits() external view returns (Deposit[] memory);
+    function getAllDeposits() external view returns (Deposit[] memory);
+
+     /**
+     * @dev returns an deposit object for a lender based on depositId 
+     * @param _depositId is the id of deposit
+     */
+    function getDeposit(uint256 _depositId) external view returns (Deposit memory);
+
+
 }

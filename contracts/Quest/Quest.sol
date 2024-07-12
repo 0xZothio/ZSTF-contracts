@@ -25,8 +25,9 @@ contract Quest is IQuest {
 
     event DepositAmount(
         address indexed user,
-        uint256 indexed tokenId,
-        uint256 indexed amount
+        uint256 tokenId,
+        uint256 indexed amount,
+        uint256 indexed depositId
     );
 
     event WithdrawAmount(
@@ -80,19 +81,19 @@ contract Quest is IQuest {
         });
         userDeposits[msg.sender].push(lenderData.deposits[currentId]);
 
-        emit DepositAmount(msg.sender, _tokenId, _amount);
+        emit DepositAmount(msg.sender, _tokenId, _amount, currentId);
 
         return currentId;
     }
 
     function withdrawAmount(uint _depositId) external returns (bool) {
         Deposit storage depositData = lenders[msg.sender].deposits[_depositId];
-         uint256 depositedAmount = depositData.amount;
+        uint256 depositedAmount = depositData.amount;
         require(
             depositData.depositor == msg.sender,
             "Deposit does not exist or unauthorized"
         );
-        require(depositedAmount>0,"Not Deposit Exist");
+        require(depositedAmount > 0, "Not Deposit Exist");
         uint256 depositTokenId = depositData.tokenId;
 
         uint256 stableReward = _calculateRewards(
@@ -109,31 +110,25 @@ contract Quest is IQuest {
             ),
             "withdraw(uint256 _depositNumber) : TRANSFER FAILED"
         );
-        userDeposits[msg.sender][_depositId].withdrawn=true;
+        userDeposits[msg.sender][_depositId].withdrawn = true;
         emit WithdrawAmount(msg.sender, depositTokenId, stableAmount);
         delete lenders[msg.sender].deposits[_depositId];
         return true;
     }
 
-    function getActiveDeposits() external view returns (Deposit[] memory) {
-        Deposit[] storage deposits = userDeposits[msg.sender];
-        Deposit[] memory activeDeposits = new Deposit[](deposits.length);
-
-        uint256 index = 0;
-        for (uint256 i = 0; i < deposits.length; i++) {
-            if (!deposits[i].withdrawn) {
-                activeDeposits[index] = deposits[i];
-                index++;
-            }
-        }
-
-        // Resize the array to remove any empty slots
-        assembly {
-            mstore(activeDeposits, index)
-        }
-
-        return activeDeposits;
+    function getAllDeposits() external view returns (Deposit[] memory) {
+        return userDeposits[msg.sender];
     }
+
+    function getDeposit(uint256 _depositId)
+        external
+        view
+        returns (Deposit memory)
+    {
+        return lenders[msg.sender].deposits[_depositId];
+    }
+
+    
 
     function getBaseApr() public view returns (uint256) {
         return rateRounds[_currentRateRound].stableApr;
